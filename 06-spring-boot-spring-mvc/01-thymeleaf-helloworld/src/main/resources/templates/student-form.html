@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Student-Form</title>
+</head>
+<body>
+<h1>Student Registration Form</h1>
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+    First Name : <input type="text" th:field="*{firstName}"/>
+    <br><br>
+    Last Name : <input type="text" th:field="*{lastName}"/>
+    <br><br>
+    <label for="country"> Country</label>
+    <select th:field="*{country}" id="country">
+<!--        <option th:value="Brazil">Brazil</option>-->
+<!--        <option th:value="India">India</option>-->
+<!--        <option th:value="Russia">Russia</option>-->
+<!--        <option th:value="Nepal">Nepal</option>-->
+
+        <!--We are using the list of countries from properties file not the hard coded -->
+        <option th:each="tempCountry:${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+    </select>
+    <br><br>
+
+
+    <span>Favourite Programming Language</span>
+<!--      <input type="radio" th:field="*{favouriteLanguage}" th:value="Go">Go</input>-->
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="Java">JAVA</input>-->
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="phyton">Phyton</input>-->
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="C">C</input>-->
+
+    <!-- Injecting data in radio option from properties files-->
+    <input type="radio" th:field="*{favouriteLanguage}" th:each="tempLanguage: ${languages}" th:value="${tempLanguage}" th:text="${tempLanguage}"/>
+
+
+
+    <br><br>
+    <input type="submit" value="Submit"/>
+
+
+</form>
+
+</body>
+</html>

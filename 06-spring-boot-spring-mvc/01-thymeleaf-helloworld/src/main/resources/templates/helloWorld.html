@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThymeLeaf Demo</title>
+
+    <!-- referce css file-->
+<!--    <link rel="stylesheet" th:href="@{/css/demo.css}">-->
+</head>
+<body>
+Hello World Of Spring
+<br>
+Student Name: <span th:text="${param.studentName}"></span>
+<br>
+The message: <span th:text="${message}"></span>
+</body>
+</html>

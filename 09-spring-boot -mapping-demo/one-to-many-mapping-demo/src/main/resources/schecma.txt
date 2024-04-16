@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS instructor_details;
+DROP TABLE IF EXISTS instructor;
+
+
+--parent(pheli) wali tabel me primary key hoti hai
+create table instructor(
+instructor_id  serial primary key ,
+instructor_name varchar(250),
+age int
+);
+-- child (baad wali) table me forign key hoti hai jo ki parent ki primarty ko map karti hai
+--making one to many relation between instructor(one) and instructor_details(one)
+create table instructor_details(
+instructor_detail_id serial primary key,
+hobby varchar(20),
+qualification varchar(20),
+instructor_id int,
+constraint instuctor_detail_fk
+foreign key (instructor_id)
+references instructor(instructor_id)
+);
+--making one to many relation between instructor(one) and courses(many)
+create table courses(
+course_id serial primary key,
+course_name varchar(250),
+duration int,
+instructor_id int,
+constraint instuctor_detail_fk
+foreign key (instructor_id)
+references instructor(instructor_id)
+)
