@@ -8,13 +8,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "instructor")
+//to avoid circular reference use this  annotation::- infinite rcursion::-
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Instructor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instructor_id")
     private Integer id;
-
+//to avoid infinite recurrsion we can use @JsonManagedReference(On parent side) and @JsonBackReference(on child side)
     @Column(name = "instructor_name")
     private String name;
 
